@@ -1,0 +1,7 @@
+.negrita {
+  font-weight: bolder;
+}
+
+.wrapper {
+  height: calc(100% - 64px - 24px);
+}

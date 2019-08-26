@@ -1,0 +1,12 @@
+<ag-grid-angular
+  class="ag-theme-balham wrapper"
+  #gridCotizacionesPromedios
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  [overlayLoadingTemplate]="overlayLoadingTemplate"
+  [loadingOverlayComponent]="loadingOverlayComponent"
+  [loadingOverlayComponentParams]="loadingOverlayComponentParams"
+  [rowData]="rowData"
+  [frameworkComponents]="frameworkComponents"
+  (gridReady)="onGridReady($event)">
+</ag-grid-angular>
