@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, from, merge, of, forkJoin } from 'rxjs';
-import { catchError, combineLatest, map, mergeMap, tap } from 'rxjs/operators';
+import { catchError, combineLatest, map, mergeMap, tap, groupBy, count } from 'rxjs/operators';
 
 // Class Models
 import { PaisModel } from '../models/pais.model';
@@ -24,11 +24,9 @@ export class PaisesService {
 
   // Leer todos los Paises
   getAllPaises(): Observable<PaisModel[]>  {
-
     return this.http.get<PaisModel[]>('https://restcountries-v1.p.rapidapi.com/all', { headers: this.headersPaises }).pipe(
       map( data => data)
-    )
-
+    );
   }
 
 }

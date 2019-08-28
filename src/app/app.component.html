@@ -1,10 +1,34 @@
-<!-- Header Toolbar  -->
-<mat-toolbar
-  color="primary">
-  <!-- Title -->
-  <mat-toolbar-row>Mi primera APP - {{ title }}</mat-toolbar-row>
-</mat-toolbar>
+<div
+  fxLayout="column">
 
-<app-paises
-    [data]="regiones">
-</app-paises>
+  <!-- Header Toolbar  -->
+  <mat-toolbar
+    color="primary">
+    <!-- Title -->
+    <mat-toolbar-row>Mi primera APP - {{ title }}</mat-toolbar-row>
+  </mat-toolbar>
+
+  <!-- Error Line -->
+  <div class="error-line">
+    {{ msgErrorLine }}
+  </div>
+
+  <!-- Body -->
+  <div
+    fxLayout="row"
+    fxLayoutGap="24px"
+    class="wrapper">
+
+    <!-- Paises-->
+    <app-paises
+      fxFlex="65"
+      [regiones]="regiones">
+    </app-paises>
+
+    <!-- Cotizaciones -->
+    <app-cotizaciones
+      class="wrapper"
+      fxFlex="calc(100% - 65% - 8px)">
+    </app-cotizaciones>
+  </div>
+</div>

@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormControl } from '@angular/forms';
 
 // Servicios
 import { AgGridLoadingComponent } from '../shared/spinners/ag-grid_loading.component';
 import { CustomTooltipComponent } from '../shared/custom-tooltip.component';
 import { ErrorMessageService } from '../shared/error-message.service';
+import { numberFormatter } from '../shared/math-functions';
 import { PaisesService } from '../shared/paises.service';
 
 
@@ -15,11 +17,8 @@ import { PaisesService } from '../shared/paises.service';
 })
 export class PaisesComponent implements OnInit {
 
-  // Input data to component
-  @Input() data: any;
-
-  // Resultado
-  paises: string[] = [];
+  // Input Parameters
+  @Input() regiones: {};
 
   // Definir variables del AG-GRID
   public  columnDefs;
@@ -30,14 +29,7 @@ export class PaisesComponent implements OnInit {
   public  loadingOverlayComponent;
   public  loadingOverlayComponentParams;
   public  overlayLoadingTemplate;
-  public  rowData = [];
-
-  // HTTP headers
-  httpHeaders = new HttpHeaders({
-    'x-rapidapi-host': 'restcountries-v1.p.rapidapi.com',
-    'x-rapidapi-key': 'c475e4fe16msh5376848a8ff2ae5p1576f5jsn7c4e1baf3a48',
-    'content-type': 'application/json; charset=utf-8'
-  });
+  public  tablePaises = [];
 
   constructor(
     private errorMessageService: ErrorMessageService,
@@ -47,23 +39,29 @@ export class PaisesComponent implements OnInit {
 
     // Definir las columnas del AG-GRID
     this. columnDefs = [{
-      headerName: 'Nombre',
-      field: 'name'
-    }, {
-      headerName: 'Capital',
-      field: 'capital'
-    }, {
-      headerName: 'ISO 2 code',
-      field: 'alpha2code'
-    }, {
       headerName: 'Región',
-      field: 'region'
+      field: 'region',
+      filter: 'agTextColumnFilter',
+      minWidth: 98
     }, {
       headerName: 'Sub-región',
-      field: 'subregion'
+      field: 'subregion',
+      minWidth: 172
+    }, {
+      headerName: 'Nombre',
+      field: 'name',
+      minWidth: 219
+    }, {
+      headerName: 'Capital',
+      field: 'capital',
+      minWidth: 150
+    }, {
+      headerName: 'ISO2',
+      field: 'alpha2Code'
     }];
     this.defaultColDef = {
-      sortable: false,
+      resizable: true,
+      sortable: true,
       tooltipComponent: 'customTooltip'
     };
     this.frameworkComponents = {
@@ -75,11 +73,9 @@ export class PaisesComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    console.log('*** REGIONES A BUSCAR:', this.data);
-    this.data = {c: 'America'};
-    console.log('*** REGIONES A BUSCAR:', this.data);
-
+    console.log('*** PAISES regiones (antes):', this.regiones);
+    this.regiones['c'] = 'America';
+    console.log('*** PAISES regiones (despues):', this.regiones);
   }
 
   // Ejecutar una vez inicializado el AG-GRID
@@ -94,10 +90,18 @@ export class PaisesComponent implements OnInit {
     this.paisesService.getAllPaises().subscribe(
       data => {
         console.log('*** PAISES:', data);
-        this.rowData = data;
+        this.gridApi.setRowData(data);
+        // this.autoSizeAllColumns();
+        this.gridApi.sizeColumnsToFit();
       }
-
     )
   }
 
+  autoSizeAllColumns() {
+    const allColumnIds = [];
+    this.gridColumnApi.getAllColumns().forEach((column) => {
+      allColumnIds.push(column.colId);
+    });
+    this.gridColumnApi.autoSizeColumns(allColumnIds);
+  }
 }
