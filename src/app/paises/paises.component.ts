@@ -6,7 +6,6 @@ import { FormControl } from '@angular/forms';
 import { AgGridLoadingComponent } from '../shared/spinners/ag-grid_loading.component';
 import { CustomTooltipComponent } from '../shared/custom-tooltip.component';
 import { ErrorMessageService } from '../shared/error-message.service';
-import { numberFormatter } from '../shared/math-functions';
 import { PaisesService } from '../shared/paises.service';
 
 

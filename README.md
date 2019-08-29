@@ -23,26 +23,26 @@ Ejecutar `ng generate component path-name/component-name` para generar un nuevo 
 
 ## Build to deploy for a test or production server
 
-Ejecutar `ng build` para crear el bundle TEST del proyecto. El bundle se creará en el directorio `dist/`. User el flag  `--prod` para construir el bundle para PRODUCCION (`ng build --prod`).
+Ejecutar `ng build` para crear el bundle TEST del proyecto. El bundle se creará en el directorio `dist/`. Usar el flag  `--prod` para construir el bundle para PRODUCCION (`ng build --prod`).
 
 ## Instalación
 
 Previo a la instalación, es necesario que en el equipo donde se instalará esta app, existan los siguientes programas:
-a) Node.Js ver10 o superior
-b) npm
-c) Angular CLI
-d) git
+- Node.Js ver10 o superior
+- npm
+- Angular CLI
+- git
 
 Para la instalación:
 1) Clonar este repositorio en un directorio de la PC, utilizando el programa git  (en WIN -> c:\sites   en Mac o Linux -> /opt/sites)
    $  git clone https://github.com/gtanoira/app01.git
 
 2) Instalar todas las dependencias de la app. Correr el siguiente comando desde el directorio de la app:
-   $  cd app01    (quedaría  c:\sites\app01 en Win   o   /opt/sites/app01 en Mac o Linux)
-   $  npm install
+   - $  cd app01    (quedaría  c:\sites\app01 en Win   o   /opt/sites/app01 en Mac o Linux)
+   - $  npm install
 
 3) Arrancar el server (development)
-   $  ng serve -o
+   - $  ng serve -o
 
 ## Author
 
