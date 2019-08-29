@@ -43,3 +43,8 @@ Para la instalación:
 
 3) Arrancar el server (development)
    $  ng serve -o
+
+## Author
+
+Esta app fue desarrollada por Gonzalo Martinez Tanoira
+gonzalo.mtanoira@gmail.com
